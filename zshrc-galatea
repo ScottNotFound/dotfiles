@@ -103,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export CONDARC=$ZSH/../condarc
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/scott/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
