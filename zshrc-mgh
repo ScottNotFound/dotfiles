@@ -76,12 +76,12 @@ plugins=(
 	git
 	zsh-syntax-highlighting
 #    zsh-autosuggestions
-    conda-zsh-completion
+#    conda-zsh-completion
 )
 
 source $ZSH/oh-my-zsh.sh
 
-ZSH_AUTOSUGGEST_USE_ASYNC=yes
+# ZSH_AUTOSUGGEST_USE_ASYNC=yes
 
 autoload -U compinit && compinit
 # User configuration
