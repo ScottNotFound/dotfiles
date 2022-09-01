@@ -103,6 +103,7 @@ else
 fi
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export CONDARC=$ZSH/../condarc
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
