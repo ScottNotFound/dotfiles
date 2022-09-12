@@ -6,4 +6,4 @@
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "omz-custom/plugins/conda-zsh-completion"]
 	path = omz-custom/plugins/conda-zsh-completion
-	url = https://github.com:conda-incubator/conda-zsh-completion.git
+	url = https://github.com/conda-incubator/conda-zsh-completion.git
