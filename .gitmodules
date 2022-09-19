@@ -1,9 +1,9 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
-	url = ssh://github.com/ohmyzsh/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh
 [submodule "omz-custom/plugins/zsh-syntax-highlighting"]
 	path = omz-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "omz-custom/plugins/conda-zsh-completion"]
 	path = omz-custom/plugins/conda-zsh-completion
-	url = git@github.com:conda-incubator/conda-zsh-completion.git
+	url = https://github.com/conda-incubator/conda-zsh-completion.git
