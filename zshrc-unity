@@ -3,9 +3,8 @@ export PATH=$HOME/.local/bin:$PATH
 
 # source etc profile to get module stuff
 # so far this doesnt break anything that I can tell
-source /etc/profile
+#source /etc/profile
 export USER_SHORT="${USER%_umass_edu}"
-
 
 
 
@@ -122,10 +121,11 @@ alias la='ls -la'
 alias lr='ll -r'
 alias tma='tmux a'
 
-alias work='cd /work/sthiel_umass_edu'
+alias work="cd /work/$USER"
 alias sjobs="squeue -u $USER"
 
-module use "/work/$USER/modulefiles"
+# module use "/work/$USER/modulefiles"
+source /work/pi_jpswalsh_umass_edu/resources/profile/profile.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
