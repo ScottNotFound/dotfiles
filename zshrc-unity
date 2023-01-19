@@ -131,7 +131,7 @@ source /work/pi_jpswalsh_umass_edu/resources/profile/profile.sh
 module load vifm
 alias v="vifm ."
 alias sq="squeue -o'%.8i %.12P %.30j %.3t %.12l %.12M %.12L %R' --me"
-alias sqp="squeue -o'%.8i %.10P %.24j %.3t %.22V %.22S  %Y' --me"
+alias sqp="squeue -o'%.8i %.10P %.24j %.3t %.22V %.22S  %Y' --me --sort=S --states=PENDING"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
