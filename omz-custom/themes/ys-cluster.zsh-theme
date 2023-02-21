@@ -105,7 +105,7 @@ local user_name="${USER_SHORT-${USER}}"
 
 PROMPT="
 %{$terminfo[bold]$FG[030]%}#%{$reset_color%}\
-%(#,%{$bg[yellow]%}%{$fg[black]%}${user_name}%{$reset_color%},%{$fg[cyan]%}${user_name})\
+%(#,%{$fg[red]%}${user_name}%{$reset_color%},%{$fg[cyan]%}${user_name})\
 %{$reset_color%}@\
 %{$fg[green]%}$(ys_cluster_name)%m\
 %{$fg[blue]%}$(ys_prompt_jobid)\
