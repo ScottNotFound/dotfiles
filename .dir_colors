@@ -1,11 +1,11 @@
 NORMAL	00
 FILE	00
-DIR	01;95
+DIR	    01;95
 LINK	00;33
 FIFO	01;96
 DOOR	01;96
-BLK	00;94
-CHR	00;94
+BLK	    00;94
+CHR	    00;94
 ORPHAN	01;41;91
 SOCK	01;96
 SETUID	37;41
@@ -24,7 +24,7 @@ EXEC	00;32
 .bat	00;32
 
 # executable scripts
-.sh	00;32
+.sh	    00;32
 .csh	00;32
 
 # archives or compressed
@@ -42,20 +42,20 @@ EXEC	00;32
 .tzo	00;91
 .t7z	00;91
 .zip	00;91
-.z	00;91
-.dz	00;91
-.gz	00;91
+.z	    00;91
+.dz	    00;91
+.gz	    00;91
 .lrz	00;91
-.lz	00;91
+.lz	    00;91
 .lzo	00;91
-.xz	00;91
+.xz	    00;91
 .zst	00;91
 .tzst	00;91
 .bz2	00;91
-.bz	00;91
+.bz	    00;91
 .tbz	00;91
 .tbz2	00;91
-.tz	00;91
+.tz	    00;91
 .deb	00;91
 .rpm	00;91
 .jar	00;91
@@ -67,8 +67,8 @@ EXEC	00;32
 .ace	00;91
 .zoo	00;91
 .cpio	00;91
-.7z	00;91
-.rz	00;91
+.7z	    00;91
+.rz	    00;91
 .cab	00;91
 .wim	00;91
 .swm	00;91
@@ -105,18 +105,18 @@ EXEC	00;32
 .m4v	00;35
 .mp4v	00;35
 .vob	00;35
-.qt	00;35
+.qt	    00;35
 .nuv	00;35
 .wmv	00;35
 .asf	00;35
-.rm	00;35
+.rm	    00;35
 .rmvb	00;35
 .flc	00;35
 .avi	00;35
 .fli	00;35
 .flv	00;35
-.gl	00;35
-.dl	00;35
+.gl	    00;35
+.dl	    00;35
 .xcf	00;35
 .xwd	00;35
 .yuv	00;35
@@ -124,7 +124,7 @@ EXEC	00;32
 .emf	00;35
 # audio formats
 .aac	00;36
-.au	00;36
+.au	    00;36
 .flac	00;36
 .m4a	00;36
 .mid	00;36
@@ -133,5 +133,5 @@ EXEC	00;32
 .mp3	00;36
 .mpc	00;36
 .ogg	00;36
-.ra	00;36
+.ra	    00;36
 .wav	00;36
