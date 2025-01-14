@@ -125,6 +125,7 @@ alias rmlock='rm LOCK*'
 alias sq='squeue -o"%16i %.8P %.30j %.3t %.12l %.12M %.12L %.4C %R" --me'
 alias sqa='squeue -o"%16i %8u %.8P %.30j %.3t %.12l %.12M %.12L %.4C %R"'
 alias sqp="squeue -o'%.8i %.10P %.24j %.3t %.22V %.22S %.4C %Y' --me --sort=S --states=PENDING"
+alias grep="grep --color=auto"
 alias grepc="grep --color=always"
 
 function aflow-readme-search () {
