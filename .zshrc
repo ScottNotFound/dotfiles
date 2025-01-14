@@ -108,6 +108,7 @@ source ~/.dotfiles/powerlevel10k/powerlevel10k.zsh-theme
 
 # PLUGNS
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh-autosuggestions-0.7.1/zsh-autosuggestions.zsh
 
 # aliases
 alias tma='tmux a'
