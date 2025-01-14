@@ -16,20 +16,28 @@ key[Right]="${terminfo[kcuf1]}"
 key[PageUp]="${terminfo[kpp]}"
 key[PageDown]="${terminfo[knp]}"
 key[Shift-Tab]="${terminfo[kcbt]}"
+key[Ctrl-Up]="^[[1;5A"
+key[Ctrl-Down]="^[[1;5B"
+key[Ctrl-Left]="^[[1;5C"
+key[Ctrl-Right]="^[[1;5D"
 
 # setup key accordingly
-[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
-[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
-[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
-[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}"  backward-delete-char
-[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
-[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"         up-line-or-history
-[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"       down-line-or-history
-[[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"       backward-char
-[[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"      forward-char
-[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"     beginning-of-buffer-or-history
-[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"   end-of-buffer-or-history
-[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
+[[ -n "${key[Home]}"        ]] && bindkey -- "${key[Home]}"       beginning-of-line
+[[ -n "${key[End]}"         ]] && bindkey -- "${key[End]}"        end-of-line
+[[ -n "${key[Insert]}"      ]] && bindkey -- "${key[Insert]}"     overwrite-mode
+[[ -n "${key[Backspace]}"   ]] && bindkey -- "${key[Backspace]}"  backward-delete-char
+[[ -n "${key[Delete]}"      ]] && bindkey -- "${key[Delete]}"     delete-char
+[[ -n "${key[Up]}"          ]] && bindkey -- "${key[Up]}"         up-line-or-history
+[[ -n "${key[Down]}"        ]] && bindkey -- "${key[Down]}"       down-line-or-history
+[[ -n "${key[Left]}"        ]] && bindkey -- "${key[Left]}"       backward-char
+[[ -n "${key[Right]}"       ]] && bindkey -- "${key[Right]}"      forward-char
+[[ -n "${key[PageUp]}"      ]] && bindkey -- "${key[PageUp]}"     beginning-of-buffer-or-history
+[[ -n "${key[PageDown]}"    ]] && bindkey -- "${key[PageDown]}"   end-of-buffer-or-history
+[[ -n "${key[Shift-Tab]}"   ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
+[[ -n "${key[Ctrl-Up]}"     ]] && bindkey -- "${key[Ctrl-Up]}"    up-line-or-history
+[[ -n "${key[Ctrl-Down]}"   ]] && bindkey -- "${key[Ctrl-Down]}"  down-line-or-history
+[[ -n "${key[Ctrl-Left]}"   ]] && bindkey -- "${key[Ctrl-Left]}"  forward-word
+[[ -n "${key[Ctrl-Right]}"  ]] && bindkey -- "${key[Ctrl-Right]}" backward-word
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -47,9 +55,6 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "${key[Up]}" history-beginning-search-backward-end
 bindkey "${key[Down]}" history-beginning-search-forward-end
 
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored
@@ -61,7 +66,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|
 zstyle ':completion:*' menu select=0
 zstyle ':completion:*' original true
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle :compinstall filename "$HOME/.zshrc"
+zstyle :compinstall filename "$HOME/.dotfiles/.zshrc"
 
 autoload -Uz compinit
 compinit
@@ -73,6 +78,18 @@ SAVEHIST=10000
 setopt autocd beep extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
+setopt hist_expire_dups_first
+setopt hist_find_no_dups
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_no_store
+setopt hist_reduce_blanks
+setopt hist_save_by_copy
+setopt hist_save_no_dups
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+setopt extended_history
 
 autoload -Uz bashcompinit
 bashcompinit
