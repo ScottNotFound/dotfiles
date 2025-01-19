@@ -55,7 +55,7 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "${key[Up]}" history-beginning-search-backward-end
 bindkey "${key[Down]}" history-beginning-search-forward-end
 
-eval $(dircolors .dir_colors)
+eval $(dircolors ~/.dotfiles/.dir_colors)
 
 # The following lines were added by compinstall
 
