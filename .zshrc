@@ -102,7 +102,14 @@ WHEEL_LINES=8
 # PATH
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
-# LESS
+# COMMON ENV VARS
+if command -v nvim &> /dev/null; then
+    export EDITOR=nvim
+elif command -v vim &> /dev/null; then
+    export EDITOR=vim
+else
+    export EDITOR=vi
+fi
 export LESS="--mouse --wheel-lines=$WHEEL_LINES -R"
 
 # THEME
@@ -120,6 +127,7 @@ export NVIM_APPNAME=nvim-kick
 
 # aliases
 alias tma='tmux a'
+alias nv='nvim'
 alias ls='ls --color=auto'
 alias l='ls -lAh'
 alias ll='ls -lh'
