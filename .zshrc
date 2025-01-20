@@ -112,6 +112,12 @@ source ~/.dotfiles/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.dotfiles/zsh-autosuggestions-0.7.1/zsh-autosuggestions.zsh
 
+# NVIM config
+if [ ! -d ~/.config/nvim-kick ]; then
+    ln -s ~/.dotfiles/nvim-kick ~/.config/nvim-kick
+fi
+export NVIM_APPNAME=nvim-kick
+
 # aliases
 alias tma='tmux a'
 alias ls='ls --color=auto'
