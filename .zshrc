@@ -128,6 +128,7 @@ export NVIM_APPNAME=nvim-kick
 # aliases
 alias tma='tmux a'
 alias nv='nvim'
+alias nvh='nv .'
 alias ls='ls --color=auto'
 alias l='ls -lAh'
 alias ll='ls -lh'
