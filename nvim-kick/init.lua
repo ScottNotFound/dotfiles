@@ -166,9 +166,9 @@ vim.opt.scrolloff = 10
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('n', '<F2>', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>')
-vim.keymap.set('n', '<leader>n', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>')
-vim.keymap.set('n', '<leader>l', '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>')
+vim.keymap.set('n', '<F2>', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle line [n]umbers' })
+vim.keymap.set('n', '<leader>n', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle line [n]umbers' })
+vim.keymap.set('n', '<leader>l', '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>', { desc = 'Toggle relative [l]ine numbers' })
 --vim.keymap.set('n', '<leader>L', '<cmd>set relativenumber! <bar> set nu!<CR>')
 
 -- Diagnostic keymaps
