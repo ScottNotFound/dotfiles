@@ -104,6 +104,8 @@ vim.opt.number = true
 --  Experiment for yourself to see if you like it!
 -- vim.opt.relativenumber = true
 
+vim.opt.wrap = false
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
@@ -170,6 +172,8 @@ vim.keymap.set('n', '<F2>', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<
 vim.keymap.set('n', '<leader>n', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle line [n]umbers' })
 vim.keymap.set('n', '<leader>l', '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>', { desc = 'Toggle relative [l]ine numbers' })
 --vim.keymap.set('n', '<leader>L', '<cmd>set relativenumber! <bar> set nu!<CR>')
+
+vim.keymap.set('n', '<leader>tw', '<cmd>exe &wrap? "set nowrap" : "set wrap"<CR>', { desc = '[T]oggle line [w]rap' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
