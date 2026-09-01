@@ -1,6 +1,6 @@
 # compiled zsh files
 *.zwc
 
-# lazy.nvim plugin manifest
-lazy-lock.json
+# nvim pack plugin manifest
+nvim-pack-lock.json
 
