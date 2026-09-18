@@ -151,6 +151,10 @@ alias sqp="squeue -o'%.8i %.10P %.24j %.3t %.22V %.22S %.4C %Y' --me --sort=S --
 alias grep="grep --color=auto"
 alias grepc="grep --color=always"
 
+# conditional aliases
+if [[ "$TERM" == "xterm-kitty" || -n "$KITTY_PID" ]]; then
+    alias ssh="kitty +kitten ssh"
+fi
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
