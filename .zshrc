@@ -144,7 +144,6 @@ alias lt='ll =t'
 alias la='ll -la'
 alias lr='ll -r'
 alias wo='cd /work'
-alias aflow-readmeall="aflow --readme | awk '/readme/ {print \$2}' | sed 's/|.*//' | xargs -n 1 aflow"
 alias rmlock='rm LOCK*'
 alias sq='squeue -o"%16i %.8P %.30j %.3t %.12l %.12M %.12L %.4C %R" --me'
 alias sqa='squeue -o"%16i %8u %.8P %.30j %.3t %.12l %.12M %.12L %.4C %R"'
@@ -152,9 +151,6 @@ alias sqp="squeue -o'%.8i %.10P %.24j %.3t %.22V %.22S %.4C %Y' --me --sort=S --
 alias grep="grep --color=auto"
 alias grepc="grep --color=always"
 
-function aflow-readme-search () {
-	aflow --readme | awk '/readme/ {print $2}' | sed 's/|.*//' | xargs -I{} bash -c "echo {}; aflow {} | grep --color=auto $@"
-}
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
