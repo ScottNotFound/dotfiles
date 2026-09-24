@@ -99,9 +99,17 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "${key[Up]}" history-beginning-search-backward-end
 bindkey "${key[Down]}" history-beginning-search-forward-end
 
-eval $(dircolors ~/.dotfiles/.dir_colors)
 
+# set some useful vars
+DOTS="$HOME/.dotfiles"
+# theme and plugin relative to dots
+THEME="powerlevel10k/powerlevel10k.zsh-theme"
+PLUGINS=(
+    "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    "zsh-autosuggestions-0.7.1/zsh-autosuggestions.zsh"
+)
 
+eval $(dircolors "$DOTS/.dir_colors")
 
 # settings
 WHEEL_LINES=8
@@ -120,15 +128,16 @@ fi
 export LESS="--mouse --wheel-lines=$WHEEL_LINES -R"
 
 # THEME
-source ~/.dotfiles/powerlevel10k/powerlevel10k.zsh-theme
+source $DOTS/$THEME
 
-# PLUGNS
-source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.dotfiles/zsh-autosuggestions-0.7.1/zsh-autosuggestions.zsh
+# PLUGINS
+for plugin in $PLUGINS; do
+    source $DOTS/$plugin
+done
 
 # NVIM config
 if [ ! -d ~/.config/nvim-kick ]; then
-    ln -s ~/.dotfiles/nvim-kick ~/.config/nvim-kick
+    ln -s $DOTS/nvim-kick ~/.config/nvim-kick
 fi
 export NVIM_APPNAME=nvim-kick
 
@@ -159,5 +168,31 @@ fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # customize zsh p10k prompt
-[[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh
+[[ ! -f $DOTS/.p10k.zsh ]] || source $DOTS/.p10k.zsh
+
+
+# check and recompile stale zsh scripts
+zcompare() {
+    if [[ -s "$1" && ( ! -s "$1.zwc" || "$1" -nt "$1.zwc" ) ]]; then
+        zcompile "$1"
+    fi
+}
+zcompare $DOTS/.zshrc
+zcompare $DOTS/.p10k.zsh
+for plugin in $PLUGINS; do
+    zcompare $DOTS/$plugin
+done
+
+recompile_plugins() (
+    unalias -a
+    for plugin in $PLUGINS; do
+        plugdir=$(dirname "$DOTS/$plugin")
+        echo "recompiling $plugdir"
+        find "$plugdir" -type f \( -name '*.zsh' -o -name '*.zsh-theme' -o -name '*.plugin-zsh' \) | 
+            while read -r file; do
+                zcompare "$file"
+            done
+    done
+)
+
 
