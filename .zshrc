@@ -168,7 +168,10 @@ fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # customize zsh p10k prompt
-[[ ! -f $DOTS/.p10k.zsh ]] || source $DOTS/.p10k.zsh
+P10K=".p10k.lean.zsh"
+# P10K=".p10k.zsh"
+# P10K=".p10k.full.zsh"
+[[ ! -f $DOTS/$P10K ]] || source $DOTS/$P10K
 
 
 # check and recompile stale zsh scripts
@@ -178,7 +181,7 @@ zcompare() {
     fi
 }
 zcompare $DOTS/.zshrc
-zcompare $DOTS/.p10k.zsh
+zcompare $DOTS/$P10K
 for plugin in $PLUGINS; do
     zcompare $DOTS/$plugin
 done
