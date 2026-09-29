@@ -184,14 +184,16 @@ do
 
   -- toggling ;ine numbers
   vim.keymap.set('n', '<F2>', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle line [n]umbers' })
-  vim.keymap.set('n', '<leader>n', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle line [n]umbers' })
-  vim.keymap.set('n', '<leader>l', '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>', { desc = 'Toggle relative [l]ine numbers' })
+  vim.keymap.set('n', '<leader>tn', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = '[T]oggle line [n]umbers' })
+  vim.keymap.set('n', '<leader>tl', '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>', { desc = '[T]oggle relative [l]ine numbers' })
   --vim.keymap.set('n', '<leader>L', '<cmd>set relativenumber! <bar> set nu!<CR>')
 
   vim.keymap.set('n', '<leader>tw', '<cmd>exe &wrap? "set nowrap" : "set wrap"<CR>', { desc = '[T]oggle line [w]rap' })
 
   -- Diagnostic keymaps
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+  vim.keymap.set('n', '<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "[T]oggle [d]iagnostics" })
+  vim.keymap.set('n', '<leader>tv', function() vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text }) end, { desc = "[T]oggle diagnostics [v]irtual text" })
 
   vim.keymap.set('n', '<leader>hi', '<cmd>Inspect<cr>', { desc = 'Inspect [h]ighlighted symbol' })
   vim.keymap.set('n', '<leader>ht', '<cmd>InspectTree<cr>', { desc = 'Inspect [h]ighlighted tree' })
