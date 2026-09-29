@@ -193,6 +193,9 @@ do
   -- Diagnostic keymaps
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+  vim.keymap.set('n', '<leader>hi', '<cmd>Inspect<cr>', { desc = 'Inspect [h]ighlighted symbol' })
+  vim.keymap.set('n', '<leader>ht', '<cmd>InspectTree<cr>', { desc = 'Inspect [h]ighlighted tree' })
+
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
   -- is not what someone will guess without a bit more experience.
@@ -332,6 +335,8 @@ local function gh(repo)
   return 'https://github.com/' .. repo
 end
 
+_G.gh = gh
+
 -- ============================================================
 -- SECTION 4: UI / CORE UX PLUGINS
 -- guess-indent, gitsigns, which-key, colorscheme, todo-comments, mini modules
@@ -467,7 +472,8 @@ do
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'tokyonight-night'
+  -- vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'aquatic'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -1015,7 +1021,20 @@ do
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
   -- Ensure basic parsers are installed
-  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python' }
+  local parsers = { 
+    'bash', 
+    'c', 
+    'diff', 
+    'html', 
+    'lua', 
+    'luadoc', 
+    'markdown', 
+    'markdown_inline', 
+    'query', 
+    'vim', 
+    'vimdoc', 
+    'python',
+  }
   require('nvim-treesitter').install(parsers)
 
   ---@param buf integer
@@ -1085,12 +1104,12 @@ do
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug'
   require 'plugins.indent_line'
   require 'plugins.lint'
   require 'plugins.autopairs'
   require 'plugins.neo-tree'
   require 'plugins.gitsigns' -- adds gitsigns recommended keymaps
+  require 'plugins.rainbow-brackets'
 
   -- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --

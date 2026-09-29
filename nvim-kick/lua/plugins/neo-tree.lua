@@ -5,7 +5,7 @@ vim.pack.add {
   { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = vim.version.range '3' },
   { src = 'https://github.com/vim-lua/plenary.nvim' },
   { src = 'https://github.com/MunifTanjim/nui.nvim' },
---  '1n7ax/'unvim-window-picker',
+  gh 's1n7ax/nvim-window-picker',
 }
 
 vim.keymap.set('n', '\\', '<Cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true })
