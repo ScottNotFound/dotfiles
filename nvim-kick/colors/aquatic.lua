@@ -596,12 +596,18 @@ local c = {
 
   attribute_cpp = '#434e9e',
   -- Bracket colors
-  bracket1 = '#0072ff',
-  bracket2 = '#0081dc',
-  bracket3 = '#1aabd8',
-  bracket4 = '#22c4c8',
-  bracket5 = '#29b295',
-  bracket6 = '#179387',
+  bracket1 = cuttlefish[1],
+  bracket2 = cuttlefish[2],
+  bracket3 = cuttlefish[3],
+  bracket4 = cuttlefish[4],
+  bracket5 = cuttlefish[5],
+  bracket6 = cuttlefish[6],
+  -- bracket1 = '#0072ff',
+  -- bracket2 = '#0081dc',
+  -- bracket3 = '#1aabd8',
+  -- bracket4 = '#22c4c8',
+  -- bracket5 = '#29b295',
+  -- bracket6 = '#179387',
   bracket_bad = '#ca272d',
 
   sidebar_title = '#bbbbbb',
@@ -996,30 +1002,27 @@ hi('MoreMsg', {
 -- Brackets
 -- ============================================================================
 
-hi('RainbowDelimiterRed', {
+hi('RainbowDelimiter1', {
   fg = c.bracket1,
 })
 
-hi('RainbowDelimiterYellow', {
+hi('RainbowDelimiter2', {
   fg = c.bracket2,
 })
 
-hi('RainbowDelimiterBlue', {
+hi('RainbowDelimiter3', {
   fg = c.bracket3,
 })
 
-hi('RainbowDelimiterOrange', {
+hi('RainbowDelimiter4', {
   fg = c.bracket4,
 })
 
-hi('RainbowDelimiterGreen', {
+hi('RainbowDelimiter5', {
   fg = c.bracket5,
 })
 
-hi('RainbowDelimiterViolet', {
+hi('RainbowDelimiter6', {
   fg = c.bracket6,
 })
 
-hi('RainbowDelimiterCyan', {
-  fg = c.bracket3,
-})
