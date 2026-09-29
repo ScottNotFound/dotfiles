@@ -4,3 +4,6 @@
 # nvim pack plugin manifest
 nvim-pack-lock.json
 
+# lazy lock
+lazy-lock.json
+
