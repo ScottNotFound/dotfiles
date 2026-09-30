@@ -69,11 +69,22 @@ return {
       })
 
       local servers = {
-        clangd = {},
+        clangd = {
+          on_init = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
+        },
+
         gopls = {},
         pyright = {},
+        pytest_language_server = {},
+
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+        jsonls = {},
+        bashls = {},
+        zls = {},
 
         stylua = {},
         lua_ls = {
@@ -108,6 +119,7 @@ return {
             },
           },
         },
+        docker_language_server = {},
       }
 
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -134,6 +146,7 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         -- add other things for mason to install
+        "clang-format",
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }

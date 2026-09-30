@@ -27,7 +27,19 @@ return {
     },
     opts = {
       keymap = {
-        preset = 'default',
+        preset = 'none',
+        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-e>'] = { 'hide' },
+
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
+        ['<S-Tab>'] = { 'fallback' },
+
+        ['<CR>'] = { 'fallback' },
+
+        ['<C-n>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = { 'select_prev', 'fallback' },
+        ['<C-Down>'] = { 'select_next', 'fallback' },
+        ['<C-Up>'] = { 'select_prev', 'fallback' },
       },
     },
     appearance = {
@@ -35,9 +47,22 @@ return {
     },
     completion = {
       documentation = { auto_show = false, auto_show_delay_ms = 500 },
+      trigger = {
+        prefetch_on_insert = false,
+        show_on_insert_on_trigger_character = true,
+        show_on_trigger_character = true,
+        show_on_keyword = true,
+      },
+      list = {
+        selection = {
+          preselect = true,
+          auto_insert = false,
+        },
+      },
     },
     sources = {
       default = { 'lsp', 'path', 'snippits' },
+      providers = { lsp = { async = true } },
     },
     snippets = {
       preset = 'luasnip',
