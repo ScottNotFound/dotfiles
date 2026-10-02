@@ -1,0 +1,14 @@
+{
+    "runtime": {
+        "version": "LuaJIT"
+    },
+    "diagnostics": {
+        "globals": ["hl"]
+    },
+    "workspace": {
+        "library": [
+            "/usr/share/hypr/stubs/hl.meta.lua"
+        ],
+        "checkThirdParty": false
+    }
+}
