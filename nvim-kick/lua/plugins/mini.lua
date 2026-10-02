@@ -31,6 +31,7 @@ return {
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      vim.keymap.del({'n', 'x'}, 's')
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,

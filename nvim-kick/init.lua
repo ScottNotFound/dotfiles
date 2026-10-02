@@ -167,7 +167,10 @@ do
   vim.o.cursorline = true
 
   -- Minimal number of screen lines to keep above and below the cursor.
-  vim.o.scrolloff = 10
+  vim.o.scrolloff = 5
+
+  vim.g.python3_host_prog = vim.fn.expand '~/.local/share/uv/tools/pynvim/bin/python'
+  vim.g.perl_host_prog = vim.fn.expand '~/.plenv/shims/perl'
 end
 
 -- ============================================================
@@ -192,8 +195,12 @@ do
 
   -- Diagnostic keymaps
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-  vim.keymap.set('n', '<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "[T]oggle [d]iagnostics" })
-  vim.keymap.set('n', '<leader>tv', function() vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text }) end, { desc = "[T]oggle diagnostics [v]irtual text" })
+  vim.keymap.set('n', '<leader>td', function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+  end, { desc = '[T]oggle [d]iagnostics' })
+  vim.keymap.set('n', '<leader>tv', function()
+    vim.diagnostic.config { virtual_text = not vim.diagnostic.config().virtual_text }
+  end, { desc = '[T]oggle diagnostics [v]irtual text' })
 
   vim.keymap.set('n', '<leader>hi', '<cmd>Inspect<cr>', { desc = 'Inspect [h]ighlighted symbol' })
   vim.keymap.set('n', '<leader>ht', '<cmd>InspectTree<cr>', { desc = 'Inspect [h]ighlighted tree' })
@@ -206,15 +213,13 @@ do
   -- or just use <C-\><C-n> to exit terminal mode
   vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-
   -- Move lines up and down using Alt + j/k
   vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
   vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
   vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'Move line down (insert)' })
   vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'Move line up (insert)' })
-  vim.keymap.set('v', '<A-j>', ':m \'>+1<CR>gv=gv', { desc = 'Move selection down' })
-  vim.keymap.set('v', '<A-k>', ':m \'<-2<CR>gv=gv', { desc = 'Move selection up' })
-
+  vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+  vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 
   -- TIP: Disable arrow keys in normal mode
   -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -230,6 +235,13 @@ do
   vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
   vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
   vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+  vim.keymap.set('n', '<leader>tms', function()
+    require('minuet-server').toggle()
+  end, { desc = '[T]oggle [m]inuet llm [s]erver' })
+  vim.keymap.set('n', '<leader>tmb', function()
+    require('minuet-server').toggle()
+  end, { desc = '[T]oggle [m]inuet llm [b]ehavior' })
 
   vim.diagnostic.config {
     update_in_insert = false,
@@ -250,6 +262,19 @@ do
     },
   }
 
+  vim.filetype.add {
+    extension = {
+      tpp = 'cpp',
+    },
+    filename = {
+      ['docker-compose.yaml'] = 'yaml.docker-compose',
+      ['docker-compose.yml'] = 'yaml.docker-compose',
+      ['compose.yaml'] = 'yaml.docker-compose',
+      ['compose.yml'] = 'yaml.docker-compose',
+      ['docker-bake.hcl'] = 'hcl.docker-bake',
+    },
+  }
+
   -- [[ Basic Autocommands ]]
   --  See `:help lua-guide-autocommands`
 
@@ -264,6 +289,8 @@ do
     end,
   })
 end
+
+vim.cmd.colorscheme 'aquatic'
 
 -- ============================================================
 -- SECTION 3: PLUGIN MANAGER INTRO
@@ -300,6 +327,10 @@ do
     -- Configure lazy.nvim appearance or behaviors here if desired
     checker = { enabled = false },
     install = { colorscheme = { 'aquatic' } },
+    change_detection = {
+      enabled = true,
+      notify = false,
+    },
   }
 end
 
@@ -309,8 +340,6 @@ end
 -- ============================================================
 do
   -- [[ Installing and Configuring Plugins ]]
-
-  vim.cmd.colorscheme 'aquatic'
 end
 
 -- ============================================================
