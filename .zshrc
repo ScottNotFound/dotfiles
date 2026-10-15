@@ -104,6 +104,7 @@ bindkey "${key[Down]}" history-beginning-search-forward-end
 DOTS="$HOME/.dotfiles"
 # theme and plugin relative to dots
 THEME="powerlevel10k/powerlevel10k.zsh-theme"
+PLUGIN_DIR="zsh-plugins"
 PLUGINS=(
     "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
     "zsh-autosuggestions-0.7.1/zsh-autosuggestions.zsh"
@@ -132,7 +133,7 @@ source $DOTS/$THEME
 
 # PLUGINS
 for plugin in $PLUGINS; do
-    source $DOTS/$plugin
+    source $DOTS/$PLUGIN_DIR/$plugin
 done
 
 # NVIM config
