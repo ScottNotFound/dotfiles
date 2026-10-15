@@ -167,11 +167,6 @@ colors () {
     done
 }
 
-# conditional aliases
-if [[ "$TERM" == "xterm-kitty" || -n "$KITTY_PID" ]]; then
-    alias ssh="kitty +kitten ssh"
-fi
-
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # customize zsh p10k prompt
