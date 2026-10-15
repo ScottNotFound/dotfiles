@@ -1,0 +1,126 @@
+
+outputs = { Targets = ["HDMI-A-1", "DP-2"] }
+position = "Top"
+layer = "Top"
+
+[workspaces]
+visibility_mode = "MonitorSpecificExclusive"
+group_by_monitor = true
+
+[osd]
+enabled = true
+show_volume_percentage = true
+show_brightness_percentage = true
+
+[animations]
+enabled = true
+
+[modules]
+left = [ "Workspaces", "Layout" ]
+center = [ "WindowTitle" ]
+right = [[ "SystemInfo",  "Privacy", "Settings", "Tempo" ]]
+
+
+[settings]
+logout_cmd = "hyprshutdown"
+lock_cmd = "hyprlock"
+
+audio_indicator_format = "IconAndPercentage"
+microphone_indicator_format = "IconAndPercentage"
+network_indicator_format = "Icon"
+
+indicators = ["Audio", "Microphone"]
+
+[system_info]
+indicators = ["Cpu", "Memory"]
+interval = 10
+
+[system_info.memory]
+format = "Fraction"
+
+
+[system_info.disk]
+mounts = ["/", "/mnt/m"]
+format = "Fraction"
+
+[tempo]
+timezones = [
+    "America/New_York",
+    "UTC",
+]
+formats = ["%R %Z"]
+
+[appearance.bar]
+surface = "transparent"
+radius = "none"
+margin = "none"
+
+[appearance.opacity]
+default = 0.8
+menu = 0.6
+osd = 0.4
+
+[[CustomModule]]
+name = "CapsLock"
+type = "Text"
+listen_cmd = '''
+:
+CAPSLOCK_GETTER_SCRIPT=1
+get_capslock() {
+cat <<EOF
+{"alt": "", "text": "$($(hyprctl devices -j | jq '.keyboards | .[] | select(.main == true) | .capsLock') && echo [A] || echo [a])"}
+EOF
+}
+trap get_capslock USR1
+while true; do
+get_capslock
+sleep 30 &
+wait $!
+done
+'''
+
+[[CustomModule]]
+name = "Layout"
+type = "Button"
+icon = ""
+listen_cmd = '''
+:
+LAYOUT_GETTER_SCRIPT=1
+get_layout() {
+cat <<EOF
+{"text": "$(hyprctl repl 'hl.get_active_workspace().tiled_layout' | cut -c1)","alt": ""}
+EOF
+}
+trap get_layout USR1
+while true; do
+get_layout
+sleep 10 &
+wait $!
+done
+'''
+command = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i%#ls)+1] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+on_right_click = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i-2)%(#ls+1)] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+on_scroll_up = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i%#ls)+1] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+on_scroll_down = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i-2)%(#ls+1)] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+
+[appearance]
+primary_color = "#068bd8"
+background_color = "#111111"
+text_color = "#a9b7c5"
+danger_color = "#6e0500"
+warning_color = "#a88c00"
+success_color = "#218227"
+workspace_colors = [ "#aab7c5", "#aab7c5", "#aab7c5" ]
+

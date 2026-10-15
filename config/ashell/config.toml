@@ -1,0 +1,130 @@
+
+outputs = "All"
+#outputs = { Targets = ["DP-1"] }
+position = "Top"
+layer = "Overlay"
+
+[workspaces]
+visibility_mode = "MonitorSpecific"
+group_by_monitor = true
+
+[osd]
+enabled = true
+show_volume_percentage = true
+show_brightness_percentage = true
+
+[animations]
+enabled = true
+
+[modules]
+left = [ "Workspaces", "Layout", "MediaPlayer" ]
+center = [ "WindowTitle" ]
+right = [ "SystemInfo", "Notifications", [ "Privacy", "Settings", "CapsLock", "Tempo" ]]
+
+[media_player]
+indicator_visualizer = "After"
+visualizer_framerate = 30
+menu_visualizer = true
+indicator_format = "IconAndText"
+indicator_fields = ["Artist", "Title"]
+
+[notifications]
+format = "%m/%d %H:%M"
+show_timestamps = true
+toast = false
+
+[settings]
+logout_cmd = "hyprshutdown"
+lock_cmd = "hyprlock"
+
+audio_indicator_format = "IconAndPercentage"
+microphone_indicator_format = "IconAndPercentage"
+network_indicator_format = "Icon"
+
+[system_info]
+indicators = ["Cpu", "Memory"]
+interval = 10
+
+[system_info.memory]
+format = "Fraction"
+
+
+[system_info.disk]
+mounts = ["/", "/mnt/m"]
+format = "Fraction"
+
+[tempo]
+weather_location = {City = "Durham"}
+timezones = [
+    "America/New_York",
+    "UTC",
+]
+formats = [
+    "%a %d - %R %Z",
+]
+
+[appearance.bar]
+surface = "transparent"
+radius = "none"
+margin = "none"
+
+[appearance.opacity]
+default = 0.8
+menu = 0.6
+osd = 0.4
+
+[[CustomModule]]
+name = "CapsLock"
+type = "Text"
+listen_cmd = '''
+:
+CAPSLOCK_GETTER_SCRIPT=1
+get_capslock() {
+cat <<EOF
+{"alt": "", "text": "$($(hyprctl devices -j | jq '.keyboards | .[] | select(.main == true) | .capsLock') && echo [A] || echo [a])"}
+EOF
+}
+trap get_capslock USR1
+while true; do
+get_capslock
+sleep 30 &
+wait $!
+done
+'''
+
+[[CustomModule]]
+name = "Layout"
+type = "Button"
+icon = "🪟"
+listen_cmd = '''
+:
+LAYOUT_GETTER_SCRIPT=1
+get_layout() {
+cat <<EOF
+{"text": "$(hyprctl repl 'hl.get_active_workspace().tiled_layout')","alt": ""}
+EOF
+}
+trap get_layout USR1
+while true; do
+get_layout
+sleep 10 &
+wait $!
+done
+'''
+command = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i%#ls)+1] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+on_right_click = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i-2)%(#ls+1)] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+on_scroll_up = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i%#ls)+1] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+on_scroll_down = '''
+hyprctl repl '(function() local ls={"scrolling", "dwindle", "master"} local w=hl.get_active_workspace() local nl=ls[1] for i=1, #ls do if ls[i]==w.tiled_layout then nl=ls[(i-2)%(#ls+1)] break end end hl.workspace_rule({workspace=w.id,layout=nl}) end)()'
+kill -USR1 $(pgrep -f 'LAYOUT_GETTER_SCRIPT=1')
+'''
+
