@@ -1,0 +1,28 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "dankActions": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankActions",
+      "commit": "a8a508bc371e7c3f2c7862d8840b88cf5c63978f"
+    },
+    "dankSession": {
+      "repo": "https://github.com/alcxyz/DankSession",
+      "commit": "e367f94b3b950ed0a0986de1c1d185551d3424df"
+    },
+    "mediaControlPlus": {
+      "repo": "https://github.com/Dadangdut33/dms-plugins",
+      "path": "MediaControlPlus",
+      "commit": "63fe6b87c497f1f7c2ea61432716817db1c5c3a4"
+    },
+    "quickCapture": {
+      "repo": "https://github.com/hthienloc/dms-plugins",
+      "path": "quickCapture",
+      "commit": "49c3fd7a23268af16adf29f72e00965e3ff61d02"
+    },
+    "wallpaperCarousel": {
+      "repo": "https://github.com/motor-dev/wallpaperCarousel",
+      "commit": "761ecd1b7f347beee9f17909f8334d987c935a1a"
+    }
+  }
+}

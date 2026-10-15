@@ -1,0 +1,21 @@
+{
+  "amdGpuMonitor": {
+    "enabled": false
+  },
+  "quickCapture": {
+    "enabled": true,
+    "autoMinimize": false
+  },
+  "wallpaperCarousel": {
+    "enabled": true
+  },
+  "dankActions": {
+    "enabled": true
+  },
+  "mediaControlPlus": {
+    "enabled": true
+  },
+  "dankSession": {
+    "enabled": true
+  }
+}
