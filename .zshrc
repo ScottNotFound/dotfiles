@@ -139,7 +139,10 @@ done
 
 # NVIM config
 if [ ! -d ~/.config/nvim-kick ]; then
-    ln -s $DOTS/nvim-kick ~/.config/nvim-kick
+    if [ -L ~/.config/nvim-kick ]; then
+        rm -f ~/.config/nvim-kick
+    fi
+    ln -s $DOTS/config/nvim-kick ~/.config/nvim-kick
 fi
 export NVIM_APPNAME=nvim-kick
 
