@@ -103,6 +103,7 @@ bindkey "${key[Down]}" history-beginning-search-forward-end
 # set some useful vars
 DOTS="$HOME/.dotfiles"
 # theme and plugin relative to dots
+THEME_DIR="zsh-themes"
 THEME="powerlevel10k/powerlevel10k.zsh-theme"
 PLUGIN_DIR="zsh-plugins"
 PLUGINS=(
@@ -129,7 +130,7 @@ fi
 export LESS="--mouse --wheel-lines=$WHEEL_LINES -R"
 
 # THEME
-source $DOTS/$THEME
+source $DOTS/$THEME_DIR/$THEME
 
 # PLUGINS
 for plugin in $PLUGINS; do
@@ -174,7 +175,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 P10K=".p10k.lean.zsh"
 # P10K=".p10k.zsh"
 # P10K=".p10k.full.zsh"
-[[ ! -f $DOTS/$P10K ]] || source $DOTS/$P10K
+[[ ! -f $DOTS/$THEME_DIR/$P10K ]] || source $DOTS/$THEME_DIR/$P10K
 
 
 ## DO THIS AT END
@@ -185,15 +186,15 @@ zcompare() {
     fi
 }
 zcompare $DOTS/.zshrc
-zcompare $DOTS/$P10K
+zcompare $DOTS/$THEME_DIR/$P10K
 for plugin in $PLUGINS; do
-    zcompare $DOTS/$plugin
+    zcompare $DOTS/$PLUGIN_DIR/$plugin
 done
 
 recompile_plugins() (
     unalias -a
     for plugin in $PLUGINS; do
-        plugdir=$(dirname "$DOTS/$plugin")
+        plugdir=$(dirname "$DOTS/$PLUGIN_DIR/$plugin")
         echo "recompiling $plugdir"
         find "$plugdir" -type f \( -name '*.zsh' -o -name '*.zsh-theme' -o -name '*.plugin-zsh' \) | 
             while read -r file; do
