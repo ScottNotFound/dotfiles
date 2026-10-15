@@ -138,13 +138,15 @@ for plugin in $PLUGINS; do
 done
 
 # NVIM config
-if [ ! -d ~/.config/nvim-kick ]; then
-    if [ -L ~/.config/nvim-kick ]; then
-        rm -f ~/.config/nvim-kick
-    fi
-    ln -s $DOTS/config/nvim-kick ~/.config/nvim-kick
-fi
 export NVIM_APPNAME=nvim-kick
+NVCONF=$XDG_CONFIG_HOME/$NVIM_APPNAME
+if [ ! -d $NVCONF ]; then
+    if [ -L $NVCONF ]; then
+        rm -f $NVCONF
+    fi
+    ln -s $DOTS/config/$NVIM_APPNAME $NVCONF
+fi
+
 
 # aliases
 alias tma='tmux a'

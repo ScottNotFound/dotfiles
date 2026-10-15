@@ -22,4 +22,7 @@ require("keybinds")
 
 require("startup")
 
-
+-- DMS Include Configs
+-- require("dms.outputs")
+-- require("dms.layout")
+require("dms.windowrules")
