@@ -160,6 +160,13 @@ alias sqp="squeue -o'%.8i %.10P %.24j %.3t %.22V %.22S %.4C %Y' --me --sort=S --
 alias grep="grep --color=auto"
 alias grepc="grep --color=always"
 
+# functions
+colors () {
+    for i in {0..255}; do 
+        print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'};
+    done
+}
+
 # conditional aliases
 if [[ "$TERM" == "xterm-kitty" || -n "$KITTY_PID" ]]; then
     alias ssh="kitty +kitten ssh"
@@ -174,6 +181,7 @@ P10K=".p10k.lean.zsh"
 [[ ! -f $DOTS/$P10K ]] || source $DOTS/$P10K
 
 
+## DO THIS AT END
 # check and recompile stale zsh scripts
 zcompare() {
     if [[ -s "$1" && ( ! -s "$1.zwc" || "$1" -nt "$1.zwc" ) ]]; then
