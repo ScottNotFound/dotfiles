@@ -1,0 +1,92 @@
+[font]
+size = 12.0
+
+[font.bold]
+family = "FiraCode Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[colors.primary]
+foreground = "#d8d8d8"
+background = "#161616"
+dim_foreground = "#828282"
+bright_foreground = "#dddddd"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.vi_mode_cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.search]
+matches = { foreground = "#161616", background = "#fad2e1" }
+focused_match = { foreground = "#161616", background = "#c5dedd" }
+
+[colors.line_indicator]
+foreground = "#626262"
+background = "#181818"
+
+[colors.footer_bar]
+foreground = "#585858"
+background = "#161616"
+
+[colors.selection]
+text = "CellBackground"
+background = "CellForeground"
+
+[colors.normal]
+black = "#161616"
+red = "#c62828"
+green = "#0b9a12"
+yellow = "#cddc39"
+blue = "#1976d2"
+magenta = "#7b1fa2"
+cyan = "#00796b"
+white = "#d8d8d8"
+
+[colors.bright]
+black = "#222222"
+red = "#f41515"
+green = "#59d55e"
+yellow = "#ffeb3b"
+blue = "#2196f3"
+magenta = "#9c27b0"
+cyan = "#06c6c2"
+white = "#ffffff"
+
+[colors.dim]
+black = "#000000"
+red = "#590a0a"
+green = "#016301"
+yellow = "#9e9d24"
+blue = "#0f509b"
+magenta = "#4d0f73"
+cyan = "#005449"
+white = "#6b6b6b"
+
+[bell]
+animation = "EaseOutSine"
+duration = 0
+color = "#222222"
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+
