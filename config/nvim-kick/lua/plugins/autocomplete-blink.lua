@@ -32,13 +32,13 @@ return {
         opts = {
           provider = 'openai_fim_compatible',
           n_completions = 3,
-          context_window = 16000,
+          context_window = require('minuet-server').context / 4,
 
           provider_options = {
             openai_fim_compatible = {
               name = 'llama.cpp',
               api_key = 'TERM',
-              end_point = 'http://127.0.0.1:8081/v1/completions',
+              end_point = 'http://127.0.0.1:14193/v1/completions',
               model = 'ANY', -- doesn't need to be set
               optional = {
                 max_tokens = 56,
@@ -46,87 +46,7 @@ return {
               },
               template = {
                 prompt = function(before, after, _)
-                  -- local function find_symbol(symbols, line)
-                  --   for _, symbol in ipairs(symbols or {}) do
-                  --     local start = symbol.range.start.line
-                  --     local finish = symbol.range['end'].line
-                  --     if line >= start and line <= finish then
-                  --       local child = find_symbol(symbol.children, line)
-                  --       return child or symbol
-                  --     end
-                  --   end
-                  -- end
-                  -- local function get_(bufnr, callback)
-                  --   local clients = vim.lsp.get_clients {
-                  --     bufnr = bufnr,
-                  --     method = 'textDocument/documentSymbol',
-                  --   }
-                  --   if #clients == 0 then
-                  --     callback ''
-                  --     return
-                  --   end
-                  --   clients[1]:request('textDocument/documentSymbol', {
-                  --     textDocument = {
-                  --       uri = vim.uri_from_buffer(bufnr),
-                  --     },
-                  --   }, function(err, symbols)
-                  --     if err or not symbols then
-                  --       callback ''
-                  --       return
-                  --     end
-                  --     local line = vim.api.nvim_win_get_cursor(0)[1] - 1
-                  --     local symbol = find_symbol(symbols, line)
-                  --     if symbol then
-                  --       callback(symbol.name)
-                  --     else
-                  --       callback ''
-                  --     end
-                  --   end, bufnr)
-                  -- end
-                  local function get_lsp_context(bufnr)
-                    local responses = vim.lsp.buf_request_sync(bufnr, 'textDocument/documentSymbol', {
-                      textDocument = {
-                        uri = vim.uri_from_bufnr(bufnr),
-                      },
-                    }, 1000)
-
-                    if not responses then
-                      return ''
-                    end
-
-                    for _, response in pairs(responses) do
-                      local symbols = response.result
-                      if symbols then
-                        local line = vim.api.nvim_win_get_cursor(0)[1] - 1
-
-                        local function find_symbol(items)
-                          for _, symbol in ipairs(items or {}) do
-                            if line >= symbol.range.start.line and line <= symbol.range['end'].line then
-                              return find_symbol(symbol.children) or symbol
-                            end
-                          end
-                        end
-
-                        local symbol = find_symbol(symbols)
-
-                        if symbol then
-                          return symbol.name
-                        end
-                      end
-                    end
-
-                    return ''
-                  end
-                  local lsp_context = get_lsp_context(0)
-
-                  return '<lsp_context>\n'
-                    .. lsp_context
-                    .. '\n</lsp_context>\n'
-                    .. '<|fim_prefix|>'
-                    .. before
-                    .. '<|fim_suffix|>'
-                    .. after
-                    .. '<|fim_middle|>'
+                  return '<|fim_prefix|>' .. before .. '<|fim_suffix|>' .. after .. '<|fim_middle|>'
                 end,
                 suffix = false,
               },
@@ -146,6 +66,10 @@ return {
           },
           after_cursor_filter_length = 15,
         },
+      },
+      {
+        'brenoprata10/nvim-highlight-colors',
+        opts = {},
       },
     },
     opts = {
@@ -172,15 +96,43 @@ return {
           end,
         },
       },
-      delay = {
-        completion = 100,
-        providers = 50,
-      },
       appearance = {
         nerd_font_variant = 'mono',
       },
       completion = {
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        menu = {
+          auto_show = true,
+          auto_show_delay_ms = 100,
+          draw = {
+            components = {
+              kind_icon = {
+                text = function(ctx)
+                  local icon = ctx.kind_icon
+                  if ctx.item.source_name == 'LSP' then
+                    local color_item =
+                      require('nvim-highlight-colors').format(ctx.item.documentation, { kind = ctx.kind })
+                    if color_item and color_item.abbr ~= '' then
+                      icon = color_item.abbr
+                    end
+                  end
+                  return icon .. ctx.icon_gap
+                end,
+                highlight = function(ctx)
+                  local highlight = 'BlinkCmpKind' .. ctx.kind
+                  if ctx.item.source_name == 'LSP' then
+                    local color_item =
+                      require('nvim-highlight-colors').format(ctx.item.documentation, { kind = ctx.kind })
+                    if color_item and color_item.abbr_hl_group then
+                      highlight = color_item.abbr_hl_group
+                    end
+                  end
+                  return highlight
+                end,
+              },
+            },
+          },
+        },
         trigger = {
           prefetch_on_insert = false,
           show_on_insert_on_trigger_character = true,
