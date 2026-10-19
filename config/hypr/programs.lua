@@ -4,10 +4,11 @@
 ---------------------
 
 local programs = {
-    terminal = "kitty",
+    terminal = "alacritty",
     launcher = "hyprlauncher",
     file_manager = "dolphin",
     locker = "hyprlock",
+    shell = "dms",
 }
 
 return programs
