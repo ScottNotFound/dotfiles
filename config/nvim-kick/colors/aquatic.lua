@@ -29,8 +29,8 @@ end
 
 vim.g.colors_name = 'aquatic'
 
-local white = '#ffffff'
-local black = '#000000'
+local truewhite = '#ffffff'
+local trueblack = '#000000'
 
 local grey_shades = {
   '#f2f2f2',
@@ -531,6 +531,33 @@ local c = {
   bg = '#222222',
   fg = '#a9b7c6',
 
+  black = "#161616",
+  red = "#c62828",
+  green = "#0b9a12",
+  yellow = "#cddc39",
+  blue = "#1976d2",
+  magenta = "#7b1fa2",
+  cyan = "#00796b",
+  white = "#d8d8d8",
+
+  brblack = "#222222",
+  brred = "#f41515",
+  brgreen = "#59d55e",
+  bryellow = "#ffeb3b",
+  brblue = "#2196f3",
+  brmagenta = "#9c27b0",
+  brcyan = "#06c6c2",
+  brwhite = "#ffffff",
+
+  dmblack = "#000000",
+  dmred = "#590a0a",
+  dmgreen = "#016301",
+  dmyellow = "#9e9d24",
+  dmblue = "#0f509b",
+  dmmagenta = "#4d0f73",
+  dmcyan = "#005449",
+  dmwhite = "#6b6b6b",
+
   variable = '#a9b7c6',
   comment = '#808080',
   docstring = '#6793cc',
@@ -635,6 +662,15 @@ local function fgm(groups, color)
     fg(group, color)
   end
 end
+
+vim.g.terminal_color_0 = c.black
+vim.g.terminal_color_1 = c.red
+vim.g.terminal_color_2 = c.green
+vim.g.terminal_color_3 = c.yellow
+vim.g.terminal_color_4 = c.blue
+vim.g.terminal_color_5 = c.magenta
+vim.g.terminal_color_6 = c.cyan
+vim.g.terminal_color_7 = c.white
 
 -- ============================================================================
 -- Traditional Vim syntax groups
