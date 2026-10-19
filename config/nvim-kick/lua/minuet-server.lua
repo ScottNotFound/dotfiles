@@ -5,9 +5,9 @@ M.host = '127.0.0.1'
 M.context = 1 << 13
 
 M.models = {
-  'ggml-org/Qwen25-Coder-1.5B-Q8_0-GGUF',
-  'ggml-org/Qwen25-Coder-3B-Q8_0-GGUF',
-  'ggml-org/Qwen25-Coder-7B-Q8_0-GGUF',
+  'ggml-org/Qwen2.5-Coder-1.5B-Q8_0-GGUF',
+  'ggml-org/Qwen2.5-Coder-3B-Q8_0-GGUF',
+  'ggml-org/Qwen2.5-Coder-7B-Q8_0-GGUF',
 }
 
 M.model_index = 2
@@ -57,7 +57,7 @@ function M.start()
     vim.notify 'Minuet server is already running'
     return
   end
-  vim.system(M.command, { detach = false })
+  vim.system(M.command)
   vim.notify 'Started Minuet llama.cpp server'
 end
 
