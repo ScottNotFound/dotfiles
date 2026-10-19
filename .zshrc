@@ -111,7 +111,7 @@ PLUGINS=(
     "zsh-autosuggestions-0.7.1/zsh-autosuggestions.zsh"
 )
 
-eval $(dircolors "$DOTS/.dir_colors")
+eval $(dircolors "$DOTS/dircolors/dircolors.ansi-dark")
 
 # settings
 WHEEL_LINES=8

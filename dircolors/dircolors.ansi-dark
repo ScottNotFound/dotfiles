@@ -1,0 +1,225 @@
+
+COLOR tty
+
+TERM tmux*
+TERM xterm*
+TERM alacritty*
+
+EIGHTBIT 1
+
+NORMAL  00
+RESET   00
+
+FILE    00
+DIR     01;34
+LINK    02;33
+
+# special - bold and/or bright
+FIFO    01;96
+DOOR    01;96
+BLK     01;93
+CHR     01;33
+SOCK    01;95
+
+
+ORPHAN  01;02;05;07;31;40
+MISSING 01;02;05;07;31;47
+
+SETUID  01;04;97
+SETGID  01;04;97
+STICKY  02;47;34;07
+STICKY_OTHER_WRITABLE 02;47;36;07
+OTHER_WRITABLE 01;36
+
+# execute permission
+EXEC    32
+
+# DOS executables
+.cmd    32
+.exe    32
+.com    32
+.btm    32
+.bat    32
+
+# OSX executables
+.app    32
+
+# not shell scripts - need execute bit
+# .sh   00;32
+# .csh  00;32
+
+# archives or compressed
+.tar    00;31
+.tgz    00;31
+.arc    00;31
+.arj    00;31
+.taz    00;31
+.lha    00;31
+.lz4    00;31
+.lzh    00;31
+.lzma   00;31
+.tlz    00;31
+.txz    00;31
+.tzo    00;31
+.t7z    00;31
+.zip    00;31
+.z      00;31
+.dz     00;31
+.gz     00;31
+.lrz    00;31
+.lz     00;31
+.lzo    00;31
+.xz     00;31
+.zst    00;31
+.tzst   00;31
+.bz2    00;31
+.bz     00;31
+.tbz    00;31
+.tbz2   00;31
+.tz     00;31
+.deb    00;31
+.rpm    00;31
+.jar    00;31
+.war    00;31
+.ear    00;31
+.sar    00;31
+.rar    00;31
+.alz    00;31
+.ace    00;31
+.zoo    00;31
+.cpio   00;31
+.7z     00;31
+.rz     00;31
+.cab    00;31
+.wim    00;31
+.swm    00;31
+.dwm    00;31
+.esd    00;31
+# image formats
+.jpg    00;35
+.jpeg   00;35
+.mjpg   00;35
+.mjpeg  00;35
+.gif    00;35
+.bmp    00;35
+.pbm    00;35
+.pgm    00;35
+.ppm    00;35
+.tga    00;35
+.xbm    00;35
+.xpm    00;35
+.tif    00;35
+.tiff   00;35
+.png    00;35
+.svg    00;35
+.svgz   00;35
+.mng    00;35
+.pcx    00;35
+.mov    00;35
+.mpg    00;35
+.mpeg   00;35
+.m2v    00;35
+.mkv    00;35
+.webm   00;35
+.ogm    00;35
+.mp4    00;35
+.m4v    00;35
+.mp4v   00;35
+.vob    00;35
+.qt     00;35
+.nuv    00;35
+.wmv    00;35
+.asf    00;35
+.rm     00;35
+.rmvb   00;35
+.flc    00;35
+.avi    00;35
+.fli    00;35
+.flv    00;35
+.gl     00;35
+.dl     00;35
+.xcf    00;35
+.xwd    00;35
+.yuv    00;35
+.cgm    00;35
+.emf    00;35
+# audio formats
+.aac    00;36
+.au     00;36
+.flac   00;36
+.m4a    00;36
+.mid    00;36
+.midi   00;36
+.mka    00;36
+.mp3    00;36
+.mpc    00;36
+.ogg    00;36
+.ra     00;36
+.wav    00;36
+# unimportant files e.g. backup,log,swp,compiled,machine
+.bak    02;37
+.old    02;37
+.orig   02;37
+.save   02;37
+.swp    02;37
+.swo    02;37
+.log    02;37
+*~      02;37
+*,v     02;37
+.tmp    02;37
+.out    02;37
+.zwc    02;37
+.o      02;37
+.pyc    02;37
+.class  02;37
+.part   02;37
+# notable files to stand out more or less
+*Dockerfile     01
+*readme         01
+*readme.txt     01
+*readme.md      01
+.ini    97
+.json   97
+.yml    97
+.yaml   97
+.conf   97
+.cfg    97
+.toml   97
+
+# testing
+.ANSI-30-black  30
+.ANSI-31-red    31
+.ANSI-32-green  32
+.ANSI-33-yellow 33
+.ANSI-34-blue   34
+.ANSI-35-magenta 35
+.ANSI-36-cyan   36
+.ANSI-37-white  37
+
+.ANSI-01.30-bld.black   01;30
+.ANSI-01.31-bld.red     01;31
+.ANSI-01.32-bld.green   01;32
+.ANSI-01.33-bld.yellow  01;33
+.ANSI-01.34-bld.blue    01;34
+.ANSI-01.35-bld.magenta 01;35
+.ANSI-01.36-bld.cyan    01;36
+.ANSI-01.37-bld.white   01;37
+
+.ANSI-90-br.black   90
+.ANSI-91-br.red     91
+.ANSI-92-br.green   92
+.ANSI-93-br.yellow  93
+.ANSI-94-br.blue    94
+.ANSI-95-br.magenta 95
+.ANSI-96-br.cyan    96
+.ANSI-97-br.white   97
+
+.ANSI-02.30-dim.black   02;30
+.ANSI-02.31-dim.red     02;31
+.ANSI-02.32-dim.green   02;32
+.ANSI-02.33-dim.yellow  02;33
+.ANSI-02.34-dim.blue    02;34
+.ANSI-02.35-dim.magenta 02;35
+.ANSI-02.36-dim.cyan    02;36
+.ANSI-02.37-dim.white   02;37
+
