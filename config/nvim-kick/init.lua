@@ -186,9 +186,24 @@ do
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
   -- toggling ;ine numbers
-  vim.keymap.set('n', '<F2>', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle line [n]umbers' })
-  vim.keymap.set('n', '<leader>tn', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = '[T]oggle line [n]umbers' })
-  vim.keymap.set('n', '<leader>tl', '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>', { desc = '[T]oggle relative [l]ine numbers' })
+  vim.keymap.set(
+    'n',
+    '<F2>',
+    '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>',
+    { desc = 'Toggle line [n]umbers' }
+  )
+  vim.keymap.set(
+    'n',
+    '<leader>tn',
+    '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>',
+    { desc = '[T]oggle line [n]umbers' }
+  )
+  vim.keymap.set(
+    'n',
+    '<leader>tl',
+    '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>',
+    { desc = '[T]oggle relative [l]ine numbers' }
+  )
   --vim.keymap.set('n', '<leader>L', '<cmd>set relativenumber! <bar> set nu!<CR>')
 
   vim.keymap.set('n', '<leader>tw', '<cmd>exe &wrap? "set nowrap" : "set wrap"<CR>', { desc = '[T]oggle line [w]rap' })
