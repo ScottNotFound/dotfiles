@@ -30,7 +30,11 @@ M.command = {
   'on',
 }
 
-M.models_url = 'http://' .. M.host .. ':' .. M.port .. '/v1/models'
+M.base_url = 'http://' .. M.host .. ':' .. M.port
+M.models_url = M.base_url .. '/v1/models'
+M.openai_url = M.base_url .. '/v1'
+
+M.active = false
 
 local function find_server_pid()
   local result = vim
@@ -49,7 +53,8 @@ end
 
 function M.running()
   local pid = find_server_pid()
-  return pid ~= nil and pid ~= ''
+  M.active = pid ~= nil and pid ~= ''
+  return M.active
 end
 
 function M.start()
@@ -59,16 +64,19 @@ function M.start()
   end
   vim.system(M.command)
   vim.notify 'Started Minuet llama.cpp server'
+  M.active = true
 end
 
 function M.stop()
   local pid = find_server_pid()
-  if pid == nil or pid == '' then
+  M.active = pid == nil or pid == ''
+  if M.active then
     vim.notify 'Minuet server is not running'
     return
   end
   vim.system { 'kill', tostring(pid) }
   vim.notify 'Stopped Minuet llama.cpp server'
+  M.active = false
 end
 
 function M.toggle()

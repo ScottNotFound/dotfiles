@@ -1,7 +1,16 @@
+
+local kind_icons = {
+    -- LLM Provider icons
+    claude = '',
+    openai = '',
+    gemini = '󰪁',
+    ['llama.cpp'] = '',
+}
+
 return {
   {
     'saghen/blink.cmp',
-    event = 'VimEnter',
+    event = 'InsertEnter',
     version = '1.*',
     dependencies = {
       {
@@ -39,7 +48,8 @@ return {
         ['<C-e>'] = { 'hide' },
         ['<Esc>'] = { 'hide', 'fallback' },
 
-        ['<Tab>'] = { 'select_and_accept', 'fallback' },
+        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
 
         ['<CR>'] = { 'select_and_accept', 'fallback' },
 
@@ -49,17 +59,28 @@ return {
         ['<C-Up>'] = { 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
         ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Left>'] = { 'select_prev', 'fallback' },
+        ['<Right>'] = { 'select_next', 'fallback' },
 
-        ['<C-/>'] = {
-          function(cmp)
-            cmp.show { providers = { 'minuet' } }
-          end,
-        },
+        -- ['<C-/>'] = {
+        --   function(cmp)
+        --     cmp.show { providers = { 'minuet' } }
+        --   end,
+        -- },
+        -- ['<C-\\>'] = require('minuet').make_blink_map(),
       },
       appearance = {
+        use_nvim_cmp_as_default = true,
         nerd_font_variant = 'mono',
+        kind_icons = kind_icons,
       },
       completion = {
+        accept = {
+          -- auto_brackets = { enabled = true },
+        },
+        keyword = {
+          range = 'full',
+        },
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
         menu = {
           auto_show = true,
@@ -94,7 +115,7 @@ return {
           },
         },
         trigger = {
-          prefetch_on_insert = false,
+          prefetch_on_insert = true,
           show_on_insert_on_trigger_character = true,
           show_on_trigger_character = true,
           show_on_keyword = true,
@@ -107,16 +128,16 @@ return {
         },
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'minuet' },
+        default = { 'lsp', 'path', 'snippets', },
         providers = {
           lsp = { async = true, timeout_ms = 1000 },
-          minuet = {
-            name = 'minuet',
-            module = 'minuet.blink',
-            async = true,
-            timeout_ms = 2000,
-            score_offset = 50,
-          },
+          -- minuet = {
+          --   name = 'minuet',
+          --   module = 'minuet.blink',
+          --   async = true,
+          --   timeout_ms = 2000,
+          --   score_offset = 50,
+          -- },
         },
       },
       snippets = {
