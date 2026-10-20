@@ -48,10 +48,9 @@ return {
         ['<C-e>'] = { 'hide' },
         ['<Esc>'] = { 'hide', 'fallback' },
 
-        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
 
-        ['<CR>'] = { 'select_and_accept', 'fallback' },
+        -- ['<CR>'] = { 'select_and_accept', 'fallback' },
 
         ['<C-n>'] = { 'select_next', 'fallback' },
         ['<C-p>'] = { 'select_prev', 'fallback' },
@@ -75,7 +74,7 @@ return {
       },
       completion = {
         accept = {
-          -- auto_brackets = { enabled = true },
+          auto_brackets = { enabled = true },
         },
         keyword = {
           range = 'full',
