@@ -9,8 +9,17 @@ return {
 
   {
     'NMAC427/guess-indent.nvim',
+    event = 'BufReadPre',
     config = function()
       require('guess-indent').setup {}
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'ConformFormatPost',
+        callback = function()
+          vim.defer_fn(function()
+            vim.cmd 'GuessIndent'
+          end, 20)
+        end,
+      })
     end,
   },
 }
