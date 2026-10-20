@@ -9,6 +9,16 @@ return {
       autosave = true,
       follow_cwd = true,
       save_dir = vim.fn.expand(vim.fn.stdpath 'data' .. '/persisted_sessions/'),
+      hooks = {
+        before_save = function()
+          vim.cmd 'Neotree close'
+        end,
+        after_source = function()
+          pcall(function()
+            vim.cmd 'Neotree close reset=true'
+          end)
+        end,
+      },
     },
     config = function(opts)
       local persisted = require 'persisted'
@@ -17,6 +27,11 @@ return {
       require('telescope').load_extension 'persisted'
       vim.keymap.set('n', '<leader>sp', '<cmd>Telescope persisted<cr>', {
         desc = '[S]earch [P]ersisted Sessions',
+      })
+
+      vim.api.nvim_create_autocmd('VimLeavePre', {
+        group = vim.api.nvim_create_augroup('NeoTreePersistedFix', {clear = true}),
+        callback = function() pcall(function() vim.cmd 'Neotree close' end) end,
       })
     end,
   },
