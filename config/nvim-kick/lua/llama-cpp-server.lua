@@ -59,11 +59,11 @@ end
 
 function M.start()
   if M.running() then
-    vim.notify 'Minuet server is already running'
+    vim.notify 'llama.cpp server is already running'
     return
   end
   vim.system(M.command)
-  vim.notify 'Started Minuet llama.cpp server'
+  vim.notify 'Started llama.cpp server'
   M.active = true
 end
 
@@ -71,11 +71,11 @@ function M.stop()
   local pid = find_server_pid()
   M.active = pid == nil or pid == ''
   if M.active then
-    vim.notify 'Minuet server is not running'
+    vim.notify 'llama.cpp server is not running'
     return
   end
   vim.system { 'kill', tostring(pid) }
-  vim.notify 'Stopped Minuet llama.cpp server'
+  vim.notify 'Stopped llama.cpp server'
   M.active = false
 end
 

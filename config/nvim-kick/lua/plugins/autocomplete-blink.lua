@@ -67,7 +67,6 @@ return {
         --     cmp.show { providers = { 'minuet' } }
         --   end,
         -- },
-        -- ['<C-\\>'] = require('minuet').make_blink_map(),
       },
       appearance = {
         use_nvim_cmp_as_default = true,

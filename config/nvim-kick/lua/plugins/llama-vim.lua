@@ -1,4 +1,4 @@
-local llama = require 'minuet-server'
+local llama = require 'llama-cpp-server'
 
 return {
   {

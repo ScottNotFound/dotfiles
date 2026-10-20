@@ -131,8 +131,8 @@ end, { desc = '[T]oggle [d]iagnostics [v]irtual [t]ext' })
 
 
 map('n', '<leader>tms', function()
-  require('minuet-server').toggle()
+  require('llama-cpp-server').toggle()
 end, { desc = '[T]oggle [m]inuet llm [s]erver' })
 map('n', '<leader>tmb', function()
-  require('minuet-server').toggle()
+  require('llama-cpp-server').toggle()
 end, { desc = '[T]oggle [m]inuet llm [b]ehavior' })

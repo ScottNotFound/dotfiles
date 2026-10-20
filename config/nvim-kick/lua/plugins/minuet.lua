@@ -18,12 +18,12 @@ return {
         end
       end, { silent = true, desc = 'Master Tab Pipeline: Minuet -> Neotab -> Indent' })
 
-      require('minuet-server').start()
+      require('llama-cpp-server').start()
     end,
     opts = {
       provider = 'openai_fim_compatible',
       n_completions = 1,
-      context_window = require('minuet-server').context / 2,
+      context_window = require('llama-cpp-server').context / 2,
 
       debounce_delay = 1.0,
       throttle_delay = 2.0,
@@ -65,7 +65,7 @@ return {
     },
     enable_predicates = {
       function()
-        return require('minuet-server').active
+        return require('llama-cpp-server').active
       end,
       function()
         local line = vim.api.nvim_get_current_line()
