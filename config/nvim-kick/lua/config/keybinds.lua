@@ -130,9 +130,9 @@ end, { desc = '[T]oggle [d]iagnostics [v]irtual [t]ext' })
 
 
 
-map('n', '<leader>tms', function()
+map('n', '<leader>tls', function()
   require('llama-cpp-server').toggle()
-end, { desc = '[T]oggle [m]inuet llm [s]erver' })
-map('n', '<leader>tmb', function()
+end, { desc = '[T]oggle [l]lama llm [s]erver' })
+map('n', '<leader>tlb', function()
   require('llama-cpp-server').toggle()
-end, { desc = '[T]oggle [m]inuet llm [b]ehavior' })
+end, { desc = '[T]oggle [l]lama llm [b]ehavior' })
