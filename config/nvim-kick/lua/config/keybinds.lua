@@ -7,12 +7,7 @@ local map = vim.keymap.set
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- toggling line numbers
-map(
-  'n',
-  '<leader>uln',
-  '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>',
-  { desc = 'Toggle [l]ine [n]umbers' }
-)
+map('n', '<leader>uln', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle [l]ine [n]umbers' })
 map(
   'n',
   '<leader>urln',
@@ -20,7 +15,6 @@ map(
   { desc = 'Toggle [r]elative [l]ine [n]umbers' }
 )
 map('n', '<leader>ulw', '<cmd>exe &wrap? "set nowrap" : "set wrap"<CR>', { desc = 'Toggle [l]ine [w]rap' })
-
 
 map('n', '<leader>ihs', '<cmd>Inspect<cr>', { desc = '[I]nspect [h]ighlighted [s]ymbol' })
 map('n', '<leader>iht', '<cmd>InspectTree<cr>', { desc = '[I]nspect [h]ighlighted [t]ree' })
@@ -108,17 +102,17 @@ map('n', '<leader>nf', '<cmd>enew<cr>', { desc = '[N]ew [F]ile' })
 -- diagnostic
 local diagnostic_goto = function(next, severity)
   return function()
-    vim.diagnostic.jump({
+    vim.diagnostic.jump {
       count = (next and 1 or -1) * vim.v.count1,
       severity = severity and vim.diagnostic.severity[severity] or nil,
       float = true,
-    })
+    }
   end
 end
-map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+map('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
+map('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
+map('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
+map('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
 
 map('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open [D]iagnostic [Q]uickfix list' })
 map('n', '<leader>td<leader>', function()
@@ -128,7 +122,20 @@ map('n', '<leader>tdvt', function()
   vim.diagnostic.config { virtual_text = not vim.diagnostic.config().virtual_text }
 end, { desc = '[T]oggle [d]iagnostics [v]irtual [t]ext' })
 
+-- tabs
+map('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = '[Tab] -> [L]ast' })
+map('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = '[Tab] -> Quit [O]thers' })
+map('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = '[Tab] -> [F]irst' })
+map('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = '[Tab] -> ] Next' })
+map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = '[Tab] -> [ Prev' })
+map('n', '<leader><tab>q', '<cmd>tabclose<cr>', { desc = '[Tab] -> [Q]uit' })
+map('n', '<leader><tab>c', '<cmd>tabnew<cr>', { desc = '[Tab] -> [C]reate' })
+map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = '[Tab] -> New [Tab]' })
 
+-- splits
+map('n', '<leader>%', '<C-W>v', { desc = 'vertical split', remap = true })
+map('n', '<leader>"', '<C-W>s', { desc = 'horizontal split', remap = true })
+map('n', '<leader>X', '<C-W>c', { desc = 'close pane', remap = true })
 
 map('n', '<leader>tls', function()
   require('llama-cpp-server').toggle()
