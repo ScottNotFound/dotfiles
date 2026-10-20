@@ -11,5 +11,10 @@ return {
     keys = {
       { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Open Neogit UI' },
     },
+    opts = {
+      integrations = {
+        telescope = true,
+      },
+    },
   },
 }
