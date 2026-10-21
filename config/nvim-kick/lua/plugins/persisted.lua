@@ -4,7 +4,7 @@ return {
     lazy = false,
     dependencies = { 'nvim-telescope/telescope.nvim' },
     opts = {
-      autostart = false,
+      autostart = true,
       autoload = false,
       autosave = true,
       follow_cwd = true,
@@ -13,14 +13,9 @@ return {
         before_save = function()
           vim.cmd 'Neotree close'
         end,
-        after_source = function()
-          pcall(function()
-            vim.cmd 'Neotree close reset=true'
-          end)
-        end,
       },
     },
-    config = function(opts)
+    config = function(_, opts)
       local persisted = require 'persisted'
       persisted.setup(opts)
 

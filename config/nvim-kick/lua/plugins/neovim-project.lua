@@ -20,13 +20,13 @@ return {
       },
       -- Automatically save the session when you close Neovim
       last_session_on_startup = false, -- Disabled so you see the dashboard first!
-      dashboard_mode = true,
+      dashboard_mode = false,
       picker = {
         type = 'telescope',
       },
       datapath = vim.fn.stdpath 'data' .. '/project_sessions/',
     },
-    config = function(opts)
+    config = function(_, opts)
       -- Enable restoring global variables if you want to keep plugin states
       -- vim.opt.sessionoptions:append 'globals'
 
