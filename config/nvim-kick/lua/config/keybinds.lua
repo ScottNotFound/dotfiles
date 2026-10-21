@@ -7,14 +7,14 @@ local map = vim.keymap.set
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- toggling line numbers
-map('n', '<leader>uln', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = 'Toggle [l]ine [n]umbers' })
+map('n', '<leader>tln', '<cmd>exe !&rnu? "se nu!" : "se nornu <bar> se nu!"<CR>', { desc = '[T]oggle [l]ine [n]umbers' })
 map(
   'n',
-  '<leader>urln',
+  '<leader>trln',
   '<cmd>exe &nu? "se rnu!" : "se nu <bar> se rnu"<CR>',
-  { desc = 'Toggle [r]elative [l]ine [n]umbers' }
+  { desc = '[T]oggle [r]elative [l]ine [n]umbers' }
 )
-map('n', '<leader>ulw', '<cmd>exe &wrap? "set nowrap" : "set wrap"<CR>', { desc = 'Toggle [l]ine [w]rap' })
+map('n', '<leader>tlw', '<cmd>exe &wrap? "set nowrap" : "set wrap"<CR>', { desc = '[T]oggle [l]ine [w]rap' })
 
 map('n', '<leader>ihs', '<cmd>Inspect<cr>', { desc = '[I]nspect [h]ighlighted [s]ymbol' })
 map('n', '<leader>iht', '<cmd>InspectTree<cr>', { desc = '[I]nspect [h]ighlighted [t]ree' })

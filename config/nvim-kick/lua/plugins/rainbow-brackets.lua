@@ -1,7 +1,7 @@
 return {
   {
     'hiphish/rainbow-delimiters.nvim',
-    config = function()
+    config = function(_, _)
       ---@type rainbow_delimiters.config
       vim.g.rainbow_delimiters = {
         strategy = {
