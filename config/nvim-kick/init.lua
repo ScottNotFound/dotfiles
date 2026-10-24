@@ -136,6 +136,8 @@ vim.filetype.add {
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+require('config.autocmds')
+
 vim.cmd.colorscheme 'aquatic'
 
 -- ============================================================
