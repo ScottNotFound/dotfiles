@@ -139,7 +139,7 @@ done
 
 # NVIM config
 export NVIM_APPNAME=nvim-kick
-NVCONF=$XDG_CONFIG_HOME/$NVIM_APPNAME
+NVCONF=$HOME/.config/$NVIM_APPNAME
 if [ ! -d $NVCONF ]; then
     if [ -L $NVCONF ]; then
         rm -f $NVCONF
