@@ -31,12 +31,10 @@ return {
       source_selector = {
         winbar = true,
       },
-      default_component_configs = {
-        window = {
-          mappings = {
-            ['\\'] = 'close_window',
-            ['<C-\\>'] = 'next_source',
-          },
+      window = {
+        mappings = {
+          ['\\'] = 'close_window',
+          ['<C-\\>'] = 'next_source',
         },
       },
       filesystem = {
