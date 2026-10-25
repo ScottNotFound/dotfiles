@@ -12,6 +12,16 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+if
+  os.getenv 'COLORTERM' == 'truecolor'
+  or os.getenv 'COLORTERM' == '24bit'
+  or os.getenv 'TERM' == 'alacritty'
+  or os.getenv('TERM'):match '256color$'
+then
+  vim.opt.termguicolors = true
+end
+-- else leave it to neovim
+
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -79,4 +89,3 @@ vim.o.scrolloff = 5
 
 vim.g.python3_host_prog = vim.fn.expand '~/.local/share/uv/tools/pynvim/bin/python'
 vim.g.perl_host_prog = vim.fn.expand '~/.plenv/shims/perl'
-
