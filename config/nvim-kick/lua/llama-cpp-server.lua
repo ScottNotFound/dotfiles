@@ -1,8 +1,9 @@
 local M = {}
+local bit = require('bit')
 
 M.port = 14193
 M.host = '127.0.0.1'
-M.context = 1 << 13
+M.context = bit.lshift(1, 13)
 
 M.models = {
   'ggml-org/Qwen2.5-Coder-1.5B-Q8_0-GGUF',
